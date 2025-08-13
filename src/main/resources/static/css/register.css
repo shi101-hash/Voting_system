@@ -1,0 +1,85 @@
+/* Background */
+.register-body {
+    background: linear-gradient(135deg, #1d2671, #c33764);
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+/* Heading */
+.display-5 {
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-align: center;
+    color: white;
+    margin-bottom: 22px;
+    font-size: 32px;
+    line-height: 1.2;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.35);
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+/* Card */
+.register-card {
+    background: #ffffff;
+    color: #000;
+    border: none;
+    width: 100%;
+    max-width: 480px;
+    padding: 26px;
+    border-radius: 16px;
+    box-shadow: 0 10px 32px rgba(0,0,0,0.25);
+    animation: riseIn 0.7s ease-out;
+}
+
+/* Inputs */
+.form-control {
+    border-radius: 8px;
+    padding: 10px 12px;
+    font-size: 15px;
+    border: 1px solid #d2d6dc;
+    transition: box-shadow .2s, border-color .2s;
+}
+
+.form-control:focus {
+    border-color: #1d2671;
+    box-shadow: 0 0 0 0.2rem rgba(29, 38, 113, 0.15);
+}
+
+/* Button */
+.btn-primary {
+    background-color: #1d2671;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 0;
+    font-size: 16px;
+    font-weight: 700;
+    transition: transform .2s, background-color .2s, box-shadow .2s;
+}
+
+.btn-primary:hover {
+    background-color: #c33764;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 18px rgba(195,55,100,0.35);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-14px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes riseIn {
+    from { opacity: 0; transform: translateY(18px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Mobile tweaks */
+@media (max-width: 576px) {
+    .display-5 { font-size: 24px; }
+    .register-card { padding: 20px; max-width: 92vw; border-radius: 14px; }
+    .col-form-label { margin-bottom: 6px; }
+    .row.align-items-center { --bs-gutter-x: .75rem; }
+}
