@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="/css/admin_dashboard.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+
+<h1>Admin Dashboard</h1>
+
+<div class="candidate-container">
+    <!-- Loop through candidates -->
+    <div class="candidate-card" th:each="candidate : ${candidates}">
+        <div class="candidate-name" th:text="${candidate.name}">Candidate Name</div>
+        <div class="vote-count" th:text="${candidate.voteCount}">0</div>
+
+        <!-- Safe progress bar using data attribute -->
+        <div class="progress-bar">
+            <div class="progress" th:attr="data-votes=${candidate.voteCount}" style="width:0%"></div>
+        </div>
+    </div>
+
+    <!-- Show message if no candidates -->
+    <div th:if="${#lists.isEmpty(candidates)}" class="no-candidates">
+        No candidates available
+    </div>
+</div>
+
+<a th:href="@{/logout}" class="logout-btn">Logout</a>
+
+<script>
+    // Animate vote counts
+    document.querySelectorAll('.candidate-card').forEach(card => {
+        const voteEl = card.querySelector('.vote-count');
+        const progressEl = card.querySelector('.progress');
+        const votes = parseInt(progressEl.getAttribute('data-votes')) || 0;
+
+        // Animate vote count
+        let current = 0;
+        const increment = Math.ceil(votes / 50) || 1;
+        const voteInterval = setInterval(() => {
+            current += increment;
+            if(current >= votes){
+                voteEl.innerText = votes;
+                clearInterval(voteInterval);
+            } else {
+                voteEl.innerText = current;
+            }
+        }, 20);
+
+        // Animate progress bar
+        setTimeout(() => {
+            progressEl.style.width = votes + '%';
+        }, 100);
+    });
+</script>
+
+</body>
+</html>

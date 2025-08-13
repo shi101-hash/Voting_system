@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voting Page</title>
+    <link rel="stylesheet" href="/css/votingPage.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Voting Page</h1>
+
+    <div class="message" th:if="${message}">
+        <p th:text="${message}"></p>
+    </div>
+
+    <form th:action="@{/vote}" method="post" class="vote-form">
+        <label class="section-label">Select Candidate:</label>
+        <div class="candidate-options" th:each="candidate : ${candidates}">
+            <input type="radio" th:id="${candidate.id}" th:name="candidateId" th:value="${candidate.id}" />
+            <label th:for="${candidate.id}" th:text="${candidate.name}"></label>
+        </div>
+
+        <button type="submit" class="vote-btn">Vote</button>
+    </form>
+
+    <a th:href="@{/logout}" class="logout-btn">Logout</a>
+</div>
+
+</body>
+</html>
